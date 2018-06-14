@@ -1,23 +1,24 @@
 apply plugin: 'com.android.library'
 
 ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'pin-lock-view'
-
-    publishedGroupId = 'com.andrognito.pinlockview'
-    libraryName = 'pinlockview'
-    artifact = 'pinlockview'
+    bintrayRepo = 'pinlock'
+    bintrayName = ''
+    user = 'hoanngothanh'
+    key = '47cecd89d05eb9433274f4ba12ceec872a892c47'
+    publishedGroupId = 'com.ngothanhhoan.pinlock'
+    libraryName = 'pinlock'
+    artifact = 'pinlock'
 
     libraryDescription = 'A clean, minimalistic, easy-to-use and highly customizable pin lock custom view'
 
-    siteUrl = 'https://github.com/aritraroy/PinLockView'
-    gitUrl = 'https://github.com/aritraroy/PinLockView.git'
+    siteUrl = 'https://github.com/hoanngothanh/PinLockView'
+    gitUrl = 'https://github.com/hoanngothanh/PinLockView.git'
 
-    libraryVersion = '2.1.0'
+    libraryVersion = '0.1.0'
 
-    developerId = 'aritraroy'
-    developerName = 'Aritra Roy'
-    developerEmail = 'aritra.roy.in@gmail.com'
+    developerId = 'hoanngothanh'
+    developerName = 'Ngo Thanh Hoan'
+    developerEmail = 'hoanngothanh@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'

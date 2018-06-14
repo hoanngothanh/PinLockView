@@ -21,10 +21,13 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private static final int VIEW_TYPE_NUMBER = 0;
     private static final int VIEW_TYPE_DELETE = 1;
+    private static final int VIEW_TYPE_CANCEL = 2;
+
 
     private Context mContext;
     private CustomizationOptionsBundle mCustomizationOptionsBundle;
     private OnNumberClickListener mOnNumberClickListener;
+    private OnCancelClickListener mOnCancelClickListener;
     private OnDeleteClickListener mOnDeleteClickListener;
     private int mPinLength;
 
@@ -43,6 +46,9 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (viewType == VIEW_TYPE_NUMBER) {
             View view = inflater.inflate(R.layout.layout_number_item, parent, false);
             viewHolder = new NumberViewHolder(view);
+        } else if(viewType == VIEW_TYPE_CANCEL){
+            View view = inflater.inflate(R.layout.layout_cancel, parent, false);
+            viewHolder = new CancelViewHolder(view);
         } else {
             View view = inflater.inflate(R.layout.layout_delete_item, parent, false);
             viewHolder = new DeleteViewHolder(view);
@@ -58,18 +64,20 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         } else if (holder.getItemViewType() == VIEW_TYPE_DELETE) {
             DeleteViewHolder vh2 = (DeleteViewHolder) holder;
             configureDeleteButtonHolder(vh2);
+        }else if(holder.getItemViewType()== VIEW_TYPE_CANCEL){
+            CancelViewHolder cancelViewHolder = (CancelViewHolder) holder;
         }
     }
 
     private void configureNumberButtonHolder(NumberViewHolder holder, int position) {
         if (holder != null) {
-            if (position == 9) {
-                holder.mNumberButton.setVisibility(View.GONE);
-            } else {
+//            if (position == 9) {
+//                holder.mNumberButton.setVisibility(View.GONE);
+//            } else {
                 holder.mNumberButton.setText(String.valueOf(mKeyValues[position]));
                 holder.mNumberButton.setVisibility(View.VISIBLE);
                 holder.mNumberButton.setTag(mKeyValues[position]);
-            }
+//            }
 
             if (mCustomizationOptionsBundle != null) {
                 holder.mNumberButton.setTextColor(mCustomizationOptionsBundle.getTextColor());
@@ -121,6 +129,9 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (position == getItemCount() - 1) {
             return VIEW_TYPE_DELETE;
         }
+        if (position == 9){
+            return VIEW_TYPE_CANCEL;
+        }
         return VIEW_TYPE_NUMBER;
     }
 
@@ -161,7 +172,9 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void setOnItemClickListener(OnNumberClickListener onNumberClickListener) {
         this.mOnNumberClickListener = onNumberClickListener;
     }
-
+    public void setOnCancelClickListener(OnCancelClickListener onCancelClickListener) {
+        this.mOnCancelClickListener = onCancelClickListener;
+    }
     public OnDeleteClickListener getOnDeleteClickListener() {
         return mOnDeleteClickListener;
     }
@@ -190,6 +203,21 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     if (mOnNumberClickListener != null) {
                         mOnNumberClickListener.onNumberClicked((Integer) v.getTag());
                     }
+                }
+            });
+        }
+    }
+    public class CancelViewHolder extends RecyclerView.ViewHolder{
+        Button mCancelBtn;
+        public CancelViewHolder(View itemView) {
+            super(itemView);
+            mCancelBtn = (Button) itemView.findViewById(R.id.button);
+            mCancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                if (mOnCancelClickListener!= null){
+                    mOnCancelClickListener.onCancelClicked();
+                }
                 }
             });
         }
@@ -253,7 +281,9 @@ public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public interface OnNumberClickListener {
         void onNumberClicked(int keyValue);
     }
-
+    public interface OnCancelClickListener{
+        void onCancelClicked();
+    }
     public interface OnDeleteClickListener {
         void onDeleteClicked();
 

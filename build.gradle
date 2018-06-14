@@ -12,12 +12,21 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+apply plugin: 'com.jfrog.bintray'
 allprojects {
     repositories {
         jcenter()
     }
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
 }
+bintray {
+    user = 'hoanngothanh'
+    key = '47cecd89d05eb9433274f4ba12ceec872a892c47'
+}
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
