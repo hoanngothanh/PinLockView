@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 /**
- * Created by aritraroy on 31/05/16.
+ * Created by aritraroy on 31/05/16
  */
 public class PinLockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
