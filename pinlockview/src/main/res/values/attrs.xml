@@ -24,8 +24,5 @@
         </attr>
 
     </declare-styleable>
-    <declare-styleable name="CustomTextView">
-        <attr name="font" format="string" />
-    </declare-styleable>
 
 </resources>
