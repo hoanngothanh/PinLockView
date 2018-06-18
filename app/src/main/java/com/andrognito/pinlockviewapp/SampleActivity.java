@@ -34,6 +34,11 @@ public class SampleActivity extends AppCompatActivity {
         public void onPinChange(int pinLength, String intermediatePin) {
             Log.d(TAG, "Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
         }
+
+        @Override
+        public void onCancelClick() {
+
+        }
     };
 
     @Override
