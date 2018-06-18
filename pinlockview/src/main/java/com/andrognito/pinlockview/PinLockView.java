@@ -80,6 +80,14 @@ public class PinLockView extends RecyclerView {
         }
     };
 
+    private PinLockAdapter.OnCancelClickListener mOnCancelClickListener =
+            new PinLockAdapter.OnCancelClickListener() {
+                @Override
+                public void onCancelClicked() {
+                    mPinLockListener.onCancelClick();
+                }
+            };
+
     private PinLockAdapter.OnDeleteClickListener mOnDeleteClickListener
             = new PinLockAdapter.OnDeleteClickListener() {
         @Override
@@ -174,6 +182,7 @@ public class PinLockView extends RecyclerView {
         mAdapter = new PinLockAdapter(getContext());
         mAdapter.setOnItemClickListener(mOnNumberClickListener);
         mAdapter.setOnDeleteClickListener(mOnDeleteClickListener);
+        mAdapter.setOnCancelClickListener(mOnCancelClickListener);
         mAdapter.setCustomizationOptions(mCustomizationOptionsBundle);
         setAdapter(mAdapter);
 

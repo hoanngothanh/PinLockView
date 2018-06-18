@@ -29,4 +29,5 @@ public interface PinLockListener {
      * @param intermediatePin the intermediate pin
      */
     void onPinChange(int pinLength, String intermediatePin);
+    void onCancelClick();
 }
